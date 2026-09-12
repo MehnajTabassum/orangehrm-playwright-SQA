@@ -20,7 +20,7 @@ class LoginPage {
         await this.loginButton.click();
     }
 
-    async getErrorMessage() {
+    getErrorMessage() {
         return this.errorMessage;
     }
 }
