@@ -1,0 +1,268 @@
+{
+  "info": {
+    "_postman_id": "9c5e276a-6f3a-41a2-8053-11f6afd435a8",
+    "name": "My Collection",
+    "description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "58177846",
+    "_collection_link": "https://go.postman.co/collection/58177846-9c5e276a-6f3a-41a2-8053-11f6afd435a8?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Get data",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response contains user data\", function () {",
+              "    const users = pm.response.json();",
+              "    pm.expect(users).to.be.an('array').that.is.not.empty;",
+              "});",
+              "",
+              "pm.test(\"Each user has id, name, and email\", function () {",
+              "    const users = pm.response.json();",
+              "    users.forEach(function(user) {",
+              "        pm.expect(user).to.have.property('id');",
+              "        pm.expect(user).to.have.property('name');",
+              "        pm.expect(user).to.have.property('email');",
+              "    });",
+              "});",
+              "",
+              "// Extract first user's id and store in collection variable",
+              "const users = pm.response.json();",
+              "if (users && users.length > 0) {",
+              "    pm.collectionVariables.set(\"userId\", users[0].id);",
+              "    console.log(\"Stored userId:\", users[0].id);",
+              "}"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://jsonplaceholder.typicode.com/users",
+          "protocol": "https",
+          "host": [
+            "jsonplaceholder",
+            "typicode",
+            "com"
+          ],
+          "path": [
+            "users"
+          ]
+        },
+        "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+      },
+      "response": []
+    },
+    {
+      "name": "Post data",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Successful POST request\", function () {",
+              "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+              "});",
+              ""
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"name\": \"Add your name in the body\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "postman-echo.com/post",
+          "host": [
+            "postman-echo",
+            "com"
+          ],
+          "path": [
+            "post"
+          ]
+        },
+        "description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+      },
+      "response": []
+    },
+    {
+      "name": "OrangeHRM Part D - API Automation",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\n    pm.response.to.have.status(200);\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": [
+        {
+          "name": "OrangeHRM Part D - API Automation",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://jsonplaceholder.typicode.com/users/{{userId}}?userId=1",
+              "protocol": "https",
+              "host": [
+                "jsonplaceholder",
+                "typicode",
+                "com"
+              ],
+              "path": [
+                "users",
+                "{{userId}}"
+              ],
+              "query": [
+                {
+                  "key": "userId",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "date",
+              "value": "Sat, 12 Sep 2026 16:22:03 GMT"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "transfer-encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "access-control-allow-credentials",
+              "value": "true"
+            },
+            {
+              "key": "cache-control",
+              "value": "max-age=43200"
+            },
+            {
+              "key": "etag",
+              "value": "W/\"1fd-+2Y3G3w049iSZtw5t1mzSnunngE\""
+            },
+            {
+              "key": "expires",
+              "value": "-1"
+            },
+            {
+              "key": "nel",
+              "value": "{\"report_to\":\"heroku-nel\",\"response_headers\":[\"Via\"],\"max_age\":3600,\"success_fraction\":0.01,\"failure_fraction\":0.1}"
+            },
+            {
+              "key": "pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "report-to",
+              "value": "{\"group\":\"heroku-nel\",\"endpoints\":[{\"url\":\"https://nel.heroku.com/reports?s=1JIBkYh8fHsWSSW%2BifqKCGO%2BDUnQLJAzbt%2B36NVAAGA%3D\\u0026sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d\\u0026ts=1789230123\"}],\"max_age\":3600}"
+            },
+            {
+              "key": "reporting-endpoints",
+              "value": "heroku-nel=\"https://nel.heroku.com/reports?s=1JIBkYh8fHsWSSW%2BifqKCGO%2BDUnQLJAzbt%2B36NVAAGA%3D&sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d&ts=1789230123\""
+            },
+            {
+              "key": "server",
+              "value": "cloudflare"
+            },
+            {
+              "key": "vary",
+              "value": "Origin, Accept-Encoding"
+            },
+            {
+              "key": "via",
+              "value": "2.0 heroku-router"
+            },
+            {
+              "key": "x-content-type-options",
+              "value": "nosniff"
+            },
+            {
+              "key": "x-powered-by",
+              "value": "Express"
+            },
+            {
+              "key": "x-ratelimit-limit",
+              "value": "1000"
+            },
+            {
+              "key": "x-ratelimit-remaining",
+              "value": "999"
+            },
+            {
+              "key": "x-ratelimit-reset",
+              "value": "1789230156"
+            },
+            {
+              "key": "cf-cache-status",
+              "value": "MISS"
+            },
+            {
+              "key": "content-encoding",
+              "value": "br"
+            },
+            {
+              "key": "cf-ray",
+              "value": "a3a03faf1d4babb9-IAD"
+            },
+            {
+              "key": "alt-svc",
+              "value": "h3=\":443\"; ma=86400"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"id\": 1,\n  \"name\": \"Leanne Graham\",\n  \"username\": \"Bret\",\n  \"email\": \"Sincere@april.biz\",\n  \"address\": {\n    \"street\": \"Kulas Light\",\n    \"suite\": \"Apt. 556\",\n    \"city\": \"Gwenborough\",\n    \"zipcode\": \"92998-3874\",\n    \"geo\": {\n      \"lat\": \"-37.3159\",\n      \"lng\": \"81.1496\"\n    }\n  },\n  \"phone\": \"1-770-736-8031 x56442\",\n  \"website\": \"hildegard.org\",\n  \"company\": {\n    \"name\": \"Romaguera-Crona\",\n    \"catchPhrase\": \"Multi-layered client-server neural-net\",\n    \"bs\": \"harness real-time e-markets\"\n  }\n}"
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "userId",
+      "value": "1",
+      "type": "default"
+    }
+  ]
+}
